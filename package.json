@@ -4,7 +4,8 @@
   "description": "drink+dictionary, get it?",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon server.js"
   },
   "repository": {
     "type": "git",
@@ -18,5 +19,8 @@
   "bugs": {
     "url": "https://github.com/Aidanator17/drinktionary/issues"
   },
-  "homepage": "https://github.com/Aidanator17/drinktionary#readme"
+  "homepage": "https://github.com/Aidanator17/drinktionary#readme",
+  "dependencies": {
+    "nodemon": "^2.0.15"
+  }
 }
