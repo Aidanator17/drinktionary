@@ -7,7 +7,16 @@
   </div>
   <span class="navbar-text navbar-right">
     <% if (typeof(currentUser)!=="undefined"){ %> 
-    <a href="/profile" class="nav-link form-inline"><%= currentUser.firstName+" "+currentUser.lastName %></a>
+      <div class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <%= currentUser.firstName+" "+currentUser.lastName %>
+        </a>
+        <div class="dropdown-menu navbar-dark bg-dark" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="/profile">Profile</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="/auth/logout">Logout</a>
+        </div>
+      </div>
     <% } else { %>
       <a href="/auth/login" class="nav-link form-inline">Sign in</a>
       <% } %> 

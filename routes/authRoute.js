@@ -27,6 +27,10 @@ router.post("/login", (req, res) => {
     })(req, res);
 });
 
+router.get("/register", forwardAuthenticated, async (req,res)=>{
+    res.render("auth/register")
+})
+
 router.get("/logout", (req, res) => {
     req.logout();
     res.redirect("/auth/login");
