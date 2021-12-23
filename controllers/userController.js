@@ -1,7 +1,7 @@
-const userModel = require("../models/userDatabase").userModel
+const userModel = require("../models/userDatabase").userFunctions
 
-const getUserByEmailIdAndPassword = (email, password) => {
-    let user = userModel.findOne(email);
+const getUserByEmailIdAndPassword = async (email, password) => {
+    let user = await userModel.findOne(email);
     if (user) {
       if (isUserValid(user, password)) {
         return user;

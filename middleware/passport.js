@@ -6,8 +6,9 @@ const localLogin = new LocalStrategy(
     usernameField: "email",
     passwordField: "password",
   },
-  (email, password, done) => {
-    const user = userController.getUserByEmailIdAndPassword(email, password);
+  async (email, password, done) => {
+    const user = await userController.getUserByEmailIdAndPassword(email, password);
+    // console.log("passport.js log:",user)
     return user
       ? done(null, user)
       : done(null, false, {
@@ -17,11 +18,12 @@ const localLogin = new LocalStrategy(
 );
 
 passport.serializeUser(function (user, done) {
+  // console.log("serialize user log:",user)
   done(null, user.id);
 });
 
-passport.deserializeUser(function (id, done) {
-  let user = userController.getUserById(id);
+passport.deserializeUser(async function (id, done) {
+  let user = await userController.getUserById(id);
   if (user) {
     done(null, user);
   } else {

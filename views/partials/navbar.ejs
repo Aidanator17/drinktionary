@@ -9,7 +9,7 @@
     <% if (typeof(currentUser)!=="undefined"){ %> 
     <a href="/profile" class="nav-link form-inline"><%= currentUser.firstName+" "+currentUser.lastName %></a>
     <% } else { %>
-      <a href="/login" class="nav-link form-inline">Sign in</a>
+      <a href="/auth/login" class="nav-link form-inline">Sign in</a>
       <% } %> 
   </span>
 </nav>
