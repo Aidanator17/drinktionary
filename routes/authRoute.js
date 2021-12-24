@@ -27,14 +27,18 @@ router.post("/login", (req, res) => {
     })(req, res);
 });
 
-router.get("/register", forwardAuthenticated, async (req,res)=>{
+router.get("/register", forwardAuthenticated, async (req, res) => {
     res.render("auth/register")
 })
 
-router.post("/register", async (req,res)=>{
-    userFunctions.register_local(req.body.firstName, req.body.lastName, req.body.email, req.body.password)
-    res.redirect("/auth/login")
-    console.log("working")
+router.post("/register", async (req, res) => {
+    if (req.body.password == req.body.passwordconfirm) {
+        userFunctions.register_local(req.body.firstName, req.body.lastName, req.body.email, req.body.password)
+        res.redirect("/auth/login")
+    }
+    else {
+        res.redirect("/auth/register")
+    }
 })
 
 router.get("/logout", (req, res) => {
