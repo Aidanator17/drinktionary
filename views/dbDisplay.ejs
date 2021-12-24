@@ -1,0 +1,16 @@
+<h1>The Vault</h1>
+<% for (user in database){ %>
+    <h4>
+        <%= database[user].firstName %>
+            <%= database[user].lastName %>
+    </h4>
+    <p>ID: <%= database[user].id %>
+    </p>
+    <p>Email: <%= database[user].email %>
+    </p>
+    <p>Pantry:<% if (database[user].pantry.length==0){ %> Empty<% }else{for (item in database[user].pantry){ %>
+                <%= database[user].pantry[item] %>,
+                    <% }}%>
+    </p>
+    <br>
+    <% } %>
