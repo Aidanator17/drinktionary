@@ -5,22 +5,29 @@
       <a class="nav-item nav-link" href="/">Home</a>
     </div>
   </div>
-  <span class="navbar-text navbar-right">
-    <% if (typeof(currentUser)!=="undefined"){ %> 
+  <div class="navbar-text navbar-right d-inline">
+    <% if (typeof(currentUser)!=="undefined" ){ %>
       <div class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          <%= currentUser.firstName+" "+currentUser.lastName %>
-        </a>
-        <div class="dropdown-menu navbar-dark bg-dark" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="/profile">Profile</a>
-          <% if (currentUser.role=="admin"){ %>
-          <a class="dropdown-item" href="/db/display">The Vault</a><% } %> 
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+        aria-haspopup="true" aria-expanded="false">
+        <%= currentUser.firstName+" "+currentUser.lastName %>
+      </a>
+      <div class=" dropdown-menu navbar-dark bg-dark" aria-labelledby="navbarDropdown">
+        <a class="dropdown-item" href="/profile">Profile</a>
+        <a class="dropdown-item" href="#">My Pantry</a>
+        <% if (currentUser.role=="admin" ){ %>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="/db/display">The Vault</a>
+          <a class="dropdown-item" href="#">Sessions</a>
+          <% } %>
           <div class="dropdown-divider"></div>
           <a class="dropdown-item" href="/auth/logout">Logout</a>
         </div>
       </div>
-    <% } else { %>
-      <a href="/auth/login" class="nav-link form-inline">Sign in / Sign up</a>
-      <% } %> 
-  </span>
-</nav>
+      <% } else { %>
+        <a href="/auth/login" class="nav-link form-inline">Sign in / Sign up</a>
+        <% } %>
+      </div>
+      <% if (typeof(currentUser)!=="undefined" ){ %>
+      <img class="nav-item" src="<%= currentUser.imageURL %>" width="64px"><% } %> 
+    </nav>

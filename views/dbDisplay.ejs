@@ -4,10 +4,11 @@
         <%= database[user].firstName %>
             <%= database[user].lastName %>
     </h4>
-    <p>ID: <%= database[user].id %>
+    <p class="mb-1">ID: <%= database[user].id %>
     </p>
-    <p>Email: <%= database[user].email %>
+    <p class="mb-1">Email: <%= database[user].email %>
     </p>
+    <p class="mb-1">Method: <%= database[user].method %> </p>
     <p>Pantry:<% if (database[user].pantry.length==0){ %> Empty<% }else{for (item in database[user].pantry){ %>
                 <%= database[user].pantry[item] %>,
                     <% }}%>
