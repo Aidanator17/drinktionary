@@ -1,2 +1,16 @@
-<h1><%= currentUser.firstName %> <%= currentUser.lastName %></h1>
-<p><%= currentUser.id %></p>
+<h1>
+    <%= currentUser.firstName %>
+        <%= currentUser.lastName %>
+</h1>
+<p>ID: <%= currentUser.id %>
+</p>
+<p>Email: <%= currentUser.email %>
+</p>
+
+<% if (currentUser.pantry.length !=0){ for (item in currentUser.pantry){ %>
+    <p>
+        <%= currentUser.pantry[item] %>
+    </p>
+    <% }}else{ %>
+        <p>There are no items in your pantry! Add some <a href="#">here</a></p>
+        <% } %>

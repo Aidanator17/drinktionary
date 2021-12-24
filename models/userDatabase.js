@@ -1,5 +1,7 @@
 const { json } = require('express');
 const fetch = require('node-fetch');
+const { PrismaClient } = require('@prisma/client')
+const prisma = new PrismaClient()
 let sites = ['https://drinkdictionary.herokuapp.com', 'http://localhost:8000']
 let sitenum = 1
 
@@ -38,7 +40,19 @@ const userFunctions = {
         }
         return new Error(`Couldn't find user with email: ${id}`);
     },
-
+    register_local: async (firstName, lastName, email, password) => {
+        let method = "local"
+        let role = "user"
+        let imageURL = "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"
+        let pantry = []
+        try{
+            const user = await prisma.user.create({
+                data:{ firstName, lastName, email, password, method, role, imageURL, pantry }
+            });
+        } catch (err) {
+            console.log("REGISTER ERROR:",err)
+        }
+    }
 }
 
 module.exports = { userFunctions }
