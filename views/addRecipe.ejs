@@ -1,0 +1,25 @@
+<form action="/addRecipe" method="post">
+    <div>
+        <h4>Name</h4>
+        <input class="form-control" name="name">
+    </div>
+    <div>
+        <h4>Image URL</h4>
+        <input class="form-control" name="imageURL">
+    </div>
+    <div>
+        <h4>Ingredients (each separated by a new line, do not include measurements)</h4>
+        <textarea class="form-control" name="ingredients" placeholder="Ingredients..."></textarea>
+    </div>
+    <div>
+        <h4>Directions (each separated by a new line, include measurements)</h4>
+        <textarea class="form-control" name="directions" placeholder="Directions..."></textarea>
+    </div>
+    <select name="difficulty">
+        <option value="easy">Easy</option>
+        <option value="moderate">Moderate</option>
+        <option value="hard">Hard</option>
+        <option value="very hard">Very Hard</option>
+      </select>
+    <button type="submit" class="btn btn-outline-dark mt-2">Submit</button>
+</form>
