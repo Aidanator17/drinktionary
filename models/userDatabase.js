@@ -6,7 +6,7 @@ let sites = ['https://drinkdictionary.herokuapp.com', 'http://localhost:8000']
 let sitenum = 1
 
 const returnUsersO = async () => {
-    return fetch(sites[sitenum] + '/db/usersdb').then(function (res) {
+    return fetch(sites[sitenum] + '/db/users').then(function (res) {
         return res.text();
     }).then(function (body) {
         return body
@@ -16,7 +16,7 @@ const returnUsersO = async () => {
 
 const userFunctions = {
     returnUsers: async () => {
-        return fetch(sites[sitenum] + '/db/usersdb').then(function (res) {
+        return fetch(sites[sitenum] + '/db/users').then(function (res) {
             return res.text();
         }).then(function (body) {
             return body

@@ -5,11 +5,30 @@ const prisma = new PrismaClient()
 const userFunctions = require("../models/userDatabase").userFunctions
 const { ensureAuthenticated } = require("../middleware/checkAuth");
 
-router.get("/usersdb", async (req, res) => {
+router.get("/users", async (req, res) => {
 
   try {
     const users = await prisma.user.findMany()
     return res.json(users)
+  } catch (err) {
+    return res.status(500).json({ error: "Something went wrong. " + err })
+  }
+})
+
+router.get("/recipes", async (req, res) => {
+
+  try {
+    const recipes = await prisma.recipe.findMany()
+    return res.json(recipes)
+  } catch (err) {
+    return res.status(500).json({ error: "Something went wrong. " + err })
+  }
+})
+router.get("/pantry", async (req, res) => {
+
+  try {
+    const items = await prisma.pantryItems.findMany()
+    return res.json(items)
   } catch (err) {
     return res.status(500).json({ error: "Something went wrong. " + err })
   }
