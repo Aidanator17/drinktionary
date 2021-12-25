@@ -23,4 +23,15 @@ router.post("/addItem", ensureAuthenticated, async (req,res)=>{
     foodFunctions.addItem(req.body.name,req.body.imageURL)
 })
 
+router.get("/addRecipe", ensureAuthenticated, async (req,res)=>{
+    res.render("addRecipe", {currentUser:req.user})
+})
+
+router.post("/addRecipe",ensureAuthenticated, async (req,res)=>{
+    res.redirect("/addRecipe")
+    let ingredients = String(req.body.ingredients).split("\n")
+    let directions = String(req.body.directions).split("\n")
+    foodFunctions.addRecipe(req.body.name,req.body.imageURL,directions,req.body.difficulty,ingredients)
+})
+
 module.exports = router

@@ -27,11 +27,22 @@ model User {
 model Recipe {
   id          String @id @default(uuid())
   name        String
+  imageURL    String
   difficulty  String
   ingredients String[]
   directions  String[]
 
   @@map(name: "recipes")
+}
+model RequestedRecipe {
+  id          String @id @default(uuid())
+  name        String
+  imageURL    String
+  difficulty  String
+  ingredients String[]
+  directions  String[]
+
+  @@map(name: "reqrecipes")
 }
 
 model PantryItems {

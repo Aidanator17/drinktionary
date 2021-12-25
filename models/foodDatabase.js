@@ -28,6 +28,16 @@ const foodFunctions = {
         } catch (err) {
             console.log("ADD-ITEM ERROR:", err)
         }
+    },
+    addRecipe: async (name,imageURL,directions,difficulty,ingredients) => {
+        try {
+            const user = await prisma.recipe.create({
+                data: { name,imageURL,difficulty,ingredients,directions }
+            });
+            console.log("Added Recipe:",name)
+        } catch (err) {
+            console.log("ADD-RECIPE ERROR:", err)
+        }
     }
 }
 
