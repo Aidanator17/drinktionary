@@ -1,19 +1,61 @@
 <h1>The Vault</h1>
-<div id="vaultgrid">
-<% for (user in database){ %>
-    <div><img width="64px" src="<%= database[user].imageURL %>"></div>
-    <div>
-    <h4>
-        <%= database[user].firstName %>
-            <%= database[user].lastName %>
-    </h4>
-    <p class="mb-1">ID: <%= database[user].id %>
+<button onclick="userSwap()" id="userbutton" class="btn btn-primary" disabled>Users</button>
+<button onclick="foodSwap()" id="pantrybutton" class="btn btn-primary">Pantry</button>
+<div id="users" class="vaultgrid">
+    <% for (user in database){ %>
+        <div><img width="64px" src="<%= database[user].imageURL %>"></div>
+        <div>
+            <h4>
+                <%= database[user].firstName %>
+                    <%= database[user].lastName %>
+            </h4>
+            <p class="mb-1">ID: <%= database[user].id %>
+            </p>
+            <p class="mb-1">Email: <%= database[user].email %>
+            </p>
+            <p class="mb-1">Method: <%= database[user].method %>
+            </p>
+            <p>Pantry:<% if (database[user].pantry.length==0){ %> Empty<% }else{for (item in database[user].pantry){ %>
+                        <%= database[user].pantry[item] %>,
+                            <% }}%>
+            </p>
+        </div>
+        <% } %>
+</div>
+<div id="food" style="display: none;">
+    <p>
+        <%= items.length %> total ingredients
     </p>
-    <p class="mb-1">Email: <%= database[user].email %>
-    </p>
-    <p class="mb-1">Method: <%= database[user].method %> </p>
-    <p>Pantry:<% if (database[user].pantry.length==0){ %> Empty<% }else{for (item in database[user].pantry){ %>
-                <%= database[user].pantry[item] %>,
-                    <% }}%>
-    </p></div>
-    <% } %></div>
+    <div class="vaultgrid">
+    <% for(item in items){ %>
+        <img height="64px" src="<%= items[item].imageURL %>">
+        <h5>
+            <%= items[item].name %>
+        </h5>
+        <% } %>
+</div>
+</div>
+
+<script>
+    const userSwap = () => {
+        let foodgrid = document.getElementById("food")
+        let usergrid = document.getElementById("users")
+        let foodbutton = document.getElementById("pantrybutton")
+        let userbutton = document.getElementById("userbutton")
+        foodgrid.style.display = "none";
+        usergrid.style.display = ""
+        foodbutton.disabled = false
+        userbutton.disabled = true
+    }
+
+    const foodSwap = () => {
+        let foodgrid = document.getElementById("food")
+        let usergrid = document.getElementById("users")
+        let foodbutton = document.getElementById("pantrybutton")
+        let userbutton = document.getElementById("userbutton")
+        foodgrid.style.display = "";
+        usergrid.style.display = "none"
+        foodbutton.disabled = true
+        userbutton.disabled = false
+    }
+</script>

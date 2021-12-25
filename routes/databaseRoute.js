@@ -3,6 +3,7 @@ const router = express.Router();
 const { PrismaClient } = require('@prisma/client')
 const prisma = new PrismaClient()
 const userFunctions = require("../models/userDatabase").userFunctions
+const foodFunctions = require("../models/foodDatabase").foodFunctions
 const { ensureAuthenticated } = require("../middleware/checkAuth");
 
 router.get("/users", async (req, res) => {
@@ -36,7 +37,21 @@ router.get("/pantry", async (req, res) => {
 
 router.get("/display", ensureAuthenticated, async (req, res) => {
   const users = JSON.parse(await userFunctions.returnUsers())
-  res.render("dbDisplay", {database:users,currentUser:req.user})
+  const items = JSON.parse(await foodFunctions.returnItems())
+  items.sort(function(a, b) {
+    var nameA = a.name.toUpperCase(); // ignore upper and lowercase
+    var nameB = b.name.toUpperCase(); // ignore upper and lowercase
+    if (nameA < nameB) {
+      return -1;
+    }
+    if (nameA > nameB) {
+      return 1;
+    }
+  
+    // names must be equal
+    return 0;
+  });
+  res.render("dbDisplay", {database:users,currentUser:req.user,items})
 })
 
 module.exports = router

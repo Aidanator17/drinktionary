@@ -1,4 +1,4 @@
-#vaultgrid {
+.vaultgrid {
     display: grid;
     grid-template-columns: 100px auto;
 }
