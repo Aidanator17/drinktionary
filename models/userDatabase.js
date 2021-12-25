@@ -43,7 +43,7 @@ const userFunctions = {
     register_local: async (firstName, lastName, email, password) => {
         let method = "local"
         let role = "user"
-        let imageURL = "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"
+        let imageURL = "https://i.imgur.com/kbYQ4sU.png"
         let pantry = []
         try{
             const user = await prisma.user.create({

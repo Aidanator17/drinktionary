@@ -1,5 +1,8 @@
 <h1>The Vault</h1>
+<div id="vaultgrid">
 <% for (user in database){ %>
+    <div><img width="64px" src="<%= database[user].imageURL %>"></div>
+    <div>
     <h4>
         <%= database[user].firstName %>
             <%= database[user].lastName %>
@@ -12,6 +15,5 @@
     <p>Pantry:<% if (database[user].pantry.length==0){ %> Empty<% }else{for (item in database[user].pantry){ %>
                 <%= database[user].pantry[item] %>,
                     <% }}%>
-    </p>
-    <br>
-    <% } %>
+    </p></div>
+    <% } %></div>
