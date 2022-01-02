@@ -1,0 +1,16 @@
+<h2>Your Pantry</h2>
+<% if (currentUser.pantry.length !=0){ %>
+    <p><a href="/pantry/add">Add Items</a></p>
+    <div id="personalGrid">
+        <% for (item in pPantry){ %>
+            <div>
+                <img width="64px" src="<%= pPantry[item].imageURL %>">
+            </div>
+            <h5>
+                <%= pPantry[item].name %>
+            </h5>
+            <% }%>
+    </div>
+    <%}else{ %>
+        <h4>There are no items in your pantry! Add some <a href="/pantry/add">here</a></h4>
+        <% } %>

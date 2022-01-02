@@ -38,6 +38,7 @@ router.get("/pantry", async (req, res) => {
 router.get("/display", ensureAuthenticated, async (req, res) => {
   const users = JSON.parse(await userFunctions.returnUsers())
   const items = JSON.parse(await foodFunctions.returnItems())
+  // console.log(items)
   items.sort(function(a, b) {
     var nameA = a.name.toUpperCase(); // ignore upper and lowercase
     var nameB = b.name.toUpperCase(); // ignore upper and lowercase

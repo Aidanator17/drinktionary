@@ -20,7 +20,7 @@ router.post("/login", (req, res) => {
             req.logIn(user, (err) => {
                 // console.log("authroute error:",err)
             })
-            // console.log(user);
+            console.log("Logged in",user.firstName,user.lastName);
             res.redirect("/")
         }
 

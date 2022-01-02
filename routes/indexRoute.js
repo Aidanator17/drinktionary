@@ -15,7 +15,7 @@ router.get("/profile", ensureAuthenticated, async (req, res) => {
 })
 
 router.get("/addItem", ensureAuthenticated, async (req,res)=>{
-    res.render("addItem", {currentUser:req.user})
+    res.render("food-pantry/addItem", {currentUser:req.user})
 })
 
 router.post("/addItem", ensureAuthenticated, async (req,res)=>{
@@ -24,7 +24,7 @@ router.post("/addItem", ensureAuthenticated, async (req,res)=>{
 })
 
 router.get("/addRecipe", ensureAuthenticated, async (req,res)=>{
-    res.render("addRecipe", {currentUser:req.user})
+    res.render("food-pantry/addRecipe", {currentUser:req.user})
 })
 
 router.post("/addRecipe",ensureAuthenticated, async (req,res)=>{

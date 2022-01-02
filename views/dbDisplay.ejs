@@ -1,4 +1,4 @@
-<h1>The Vault</h1>
+<h1 id="vault">The Vault</h1>
 <button onclick="userSwap()" id="userbutton" class="btn btn-primary" disabled>Users</button>
 <button onclick="foodSwap()" id="pantrybutton" class="btn btn-primary">Pantry</button>
 <div id="users" class="vaultgrid">
@@ -26,14 +26,18 @@
     <p>
         <%= items.length %> total ingredients
     </p>
-    <div class="vaultgrid">
-    <% for(item in items){ %>
-        <img height="64px" src="<%= items[item].imageURL %>">
-        <h5>
-            <%= items[item].name %>
-        </h5>
-        <% } %>
-</div>
+    <div id="foodgridcontainer">
+        <div class="vaultgrid overflow-auto">
+            <% for(item in items){ %>
+                <div class="imagegrid">
+                    <img width="64px" src="<%= items[item].imageURL %>">
+                </div>
+                <h5>
+                    <%= items[item].name %>
+                </h5>
+                <% } %>
+        </div>
+    </div>
 </div>
 
 <script>
@@ -50,6 +54,7 @@
 
     const foodSwap = () => {
         let foodgrid = document.getElementById("food")
+        let foodgridcontainer = document.getElementById("foodgridcontainer")
         let usergrid = document.getElementById("users")
         let foodbutton = document.getElementById("pantrybutton")
         let userbutton = document.getElementById("userbutton")
@@ -57,5 +62,7 @@
         usergrid.style.display = "none"
         foodbutton.disabled = true
         userbutton.disabled = false
+
+        foodgridcontainer.style.height = String(window.innerHeight - 50) + "px"
     }
 </script>
