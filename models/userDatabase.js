@@ -45,13 +45,29 @@ const userFunctions = {
         let role = "user"
         let imageURL = "https://i.imgur.com/kbYQ4sU.png"
         let pantry = []
-        try{
+        try {
             const user = await prisma.user.create({
-                data:{ firstName, lastName, email, password, method, role, imageURL, pantry }
+                data: { firstName, lastName, email, password, method, role, imageURL, pantry }
             });
         } catch (err) {
-            console.log("REGISTER ERROR:",err)
+            console.log("REGISTER ERROR:", err)
         }
+    },
+    addPantryItem: async (item, id) => {
+        const user = await prisma.user.findUnique({
+            where: {
+                id: id,
+            },
+        })
+        user.pantry.push(item)
+        const updateUser = await prisma.user.update({
+            where: {
+                id: id,
+            },
+            data: {
+              pantry: user.pantry,
+            },
+          })
     }
 }
 
