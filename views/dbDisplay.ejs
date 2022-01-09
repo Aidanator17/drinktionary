@@ -15,9 +15,12 @@
             </p>
             <p class="mb-1">Method: <%= database[user].method %>
             </p>
-            <p>Pantry:<% if (database[user].pantry.length==0){ %> Empty<% }else{for (item in database[user].pantry){ %>
-                        <%= database[user].pantry[item] %>,
-                            <% }}%>
+            <p>Pantry:<% if (database[user].pantry.length==0){ %> Empty
+                    <% } else{ for (pitem in database[user].pantry){ for (item in items){ if
+                        (database[user].pantry[pitem]==items[item].id){ %>
+                            <%= items[item].name %>,
+                        <% } } } %>
+                            <% }%>
             </p>
         </div>
         <% } %>
@@ -26,16 +29,18 @@
     <p>
         <%= items.length %> total ingredients
     </p>
-    <div id="foodgridcontainer">
-        <div class="vaultgrid overflow-auto">
-            <% for(item in items){ %>
-                <div class="imagegrid">
-                    <img width="64px" src="<%= items[item].imageURL %>">
-                </div>
-                <h5>
-                    <%= items[item].name %>
-                </h5>
-                <% } %>
+    <div id="foodgridcontainer" style="height: 500px;">
+        <div id="foodgridcontainer2">
+            <div class="vaultgrid">
+                <% for(item in items){ %>
+                    <div class="imagegrid">
+                        <img width="64px" src="<%= items[item].imageURL %>">
+                    </div>
+                    <h5>
+                        <%= items[item].name %>
+                    </h5>
+                    <% } %>
+            </div>
         </div>
     </div>
 </div>
@@ -63,6 +68,6 @@
         foodbutton.disabled = true
         userbutton.disabled = false
 
-        foodgridcontainer.style.height = String(window.innerHeight - 50) + "px"
+        foodgridcontainer.style.height = String(window.innerHeight - 250) + "px"
     }
 </script>
