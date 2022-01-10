@@ -4,7 +4,7 @@ const { PrismaClient } = require('@prisma/client')
 const prisma = new PrismaClient()
 const userFunctions = require("../models/userDatabase").userFunctions
 const foodFunctions = require("../models/foodDatabase").foodFunctions
-const { ensureAuthenticated } = require("../middleware/checkAuth");
+const { ensureAuthenticated,ensureAdmin } = require("../middleware/checkAuth");
 
 router.get("/users", async (req, res) => {
 
@@ -35,7 +35,7 @@ router.get("/pantry", async (req, res) => {
   }
 })
 
-router.get("/display", ensureAuthenticated, async (req, res) => {
+router.get("/display", ensureAdmin, async (req, res) => {
   const users = JSON.parse(await userFunctions.returnUsers())
   const items = JSON.parse(await foodFunctions.returnItems())
   // console.log(items)

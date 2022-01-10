@@ -11,6 +11,7 @@ const authRoute = require("./routes/authRoute");
 const indexRoute = require("./routes/indexRoute");
 const dbRoute = require("./routes/databaseRoute");
 const pantryRoute = require("./routes/pantryRoute")
+const recipeRoute = require("./routes/recipeRoute")
 
 app.set("view engine", "ejs");
 app.use(express.static(path.join(__dirname, "public")));
@@ -38,6 +39,7 @@ app.use("/", indexRoute);
 app.use("/auth", authRoute);
 app.use("/db", dbRoute);
 app.use("/pantry", pantryRoute)
+app.use("/recipe", recipeRoute)
 
 app.listen(port, '0.0.0.0', () => {
     console.log(`🚀 Server has started on port ${port}`);

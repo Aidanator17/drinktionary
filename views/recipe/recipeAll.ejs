@@ -1,0 +1,45 @@
+<h2>Recipes</h2>
+<span class="custom-control custom-switch">
+    <input type="checkbox" class="custom-control-input" id="customSwitch1" oninput="swap_sort()">
+    <label class="custom-control-label" for="customSwitch1">Sort by difficulty</label>
+</span>
+<div id="recipes_name">
+    <% for (drink in recipes_name){ %>
+        <div class="recipelist">
+            <a href="#">
+                <h5>
+                    <%= recipes_name[drink].name %>
+                </h5>
+            </a>
+            <p style="margin-bottom: 8px;">Difficulty: <%= recipes_name[drink].difficulty %>
+            </p>
+        </div>
+        <% } %>
+</div>
+<div id="recipes_diff" style="display: none;">
+    <% for (drink in recipes_diff){ %>
+        <div class="recipelist">
+            <a href="#">
+                <h5>
+                    <%= recipes_diff[drink].name %>
+                </h5>
+            </a>
+            <p style="margin-bottom: 8px;">Difficulty: <%= recipes_diff[drink].difficulty %>
+            </p>
+        </div>
+        <% } %>
+</div>
+<script>
+    const swap_sort = ()=>{
+        let recipes_diff = document.getElementById("recipes_diff")
+        let recipes_name = document.getElementById("recipes_name")
+        if (recipes_diff.style.display == "none"){
+            recipes_diff.style.display = "";
+            recipes_name.style.display = "none"; 
+        }
+        else {
+            recipes_name.style.display = "";
+            recipes_diff.style.display = "none"; 
+        }
+    }
+</script>
