@@ -1,9 +1,10 @@
-<h2>Your Pantry</h2>
+<h2>Your Pantry (<%= currentUser.pantry.length %>)</h2>
 <div id="items" style="overflow-y: auto;">
     <% if (currentUser.pantry.length !=0){ %>
         <p><a href="/pantry/add">Add Items</a></p>
         <div id="personalGrid">
             <% for (item in pPantry){ %>
+                <a href="/pantry/remove/<%= pPantry[item].id %>"><img src="/images/remove_symbol.png" width="20px"></a>
                 <div>
                     <img width="64px" src="<%= pPantry[item].imageURL %>">
                 </div>

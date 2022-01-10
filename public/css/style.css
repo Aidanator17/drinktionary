@@ -10,6 +10,6 @@
 
 #personalGrid {
     display: grid;
-    grid-template-columns: 100px auto;
+    grid-template-columns: 30px 100px auto;
     align-items: center;
 }

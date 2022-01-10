@@ -122,4 +122,17 @@ router.get("/view", ensureAuthenticated, async (req, res) => {
     res.render("food-pantry/personalPantry", { currentUser: req.user, pPantry })
 })
 
+router.get("/remove/:id", ensureAuthenticated, async (req,res) => {
+    let pantry = JSON.parse(await foodFunctions.returnItems())
+    let itemName
+    for (items in pantry){
+        if (pantry[items].id == req.params.id){
+            itemName = pantry[items].name
+        }
+    }
+    await userFunctions.removePantryItem(req.user.id,req.params.id)
+    console.log(req.user.firstName, req.user.lastName, "removed item:", itemName)
+    res.redirect("/pantry/view")
+})
+
 module.exports = router

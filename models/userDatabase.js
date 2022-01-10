@@ -68,6 +68,26 @@ const userFunctions = {
               pantry: user.pantry,
             },
           })
+    },
+    removePantryItem: async (userID, itemID) => {
+        const user = await prisma.user.findUnique({
+            where: {
+                id: userID,
+            },
+        })
+        for (item in user.pantry){
+            if (user.pantry[item] == itemID){
+                user.pantry.splice(item, 1)
+            }
+        }
+        const updateUser = await prisma.user.update({
+            where: {
+                id: userID,
+            },
+            data: {
+              pantry: user.pantry,
+            },
+          })
     }
 }
 

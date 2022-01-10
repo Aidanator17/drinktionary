@@ -7,10 +7,14 @@
 <p>Email: <%= currentUser.email %>
 </p>
 
-<% if (currentUser.pantry.length !=0){ for (item in currentUser.pantry){ %>
+<% if (currentUser.pantry.length> 1){ %>
     <p>
-        <%= currentUser.pantry[item] %>
+        You have <%= currentUser.pantry.length %> items in your pantry! View them <a href="/pantry/view">here</a>
     </p>
-    <% }}else{ %>
-        <p>There are no items in your pantry! Add some <a href="#">here</a></p>
-        <% } %>
+    <% }else if(currentUser.pantry.length==1) {%>
+        <p>
+            You have <%= currentUser.pantry.length %> item in your pantry! View it and add more <a href="/pantry/view">here</a>
+        </p>
+        <%} else{ %>
+            <p>There are no items in your pantry! Add some <a href="/pantry/add">here</a></p>
+            <% } %>
