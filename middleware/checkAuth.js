@@ -13,8 +13,10 @@ module.exports = {
     
   },
   ensureAdmin: function (req, res, next) {
-    if (req.user.role == "admin" && req.isAuthenticated()) {
-      return next();
+    if (req.isAuthenticated()) {
+      if (req.user.role == "admin"){
+        return next();
+      }
     }
     res.redirect("/");
   },

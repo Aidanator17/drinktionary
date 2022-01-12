@@ -51,4 +51,32 @@ router.get("/all", ensureAuthenticated, async (req,res) => {
     res.render("recipe/recipeAll",{recipes_name,recipes_diff,currentUser:req.user})
 })
 
+router.get("/personal", ensureAuthenticated, async (req,res) => {
+    const recipes = JSON.parse(await foodFunctions.returnRecipes())
+    const pantry = JSON.parse(await foodFunctions.returnItems())
+    const users = JSON.parse(await userFunctions.returnUsers())
+    let userPantry = []
+    let userRecipes = []
+    for (itemid in req.user.pantry) {
+        for (item in pantry){
+            if (pantry[item].id == req.user.pantry[itemid]){
+                userPantry.push(pantry[item].name)
+            }
+        }
+    }
+    for (recipe in recipes){
+        let includes = true
+        for (ingredient in recipes[recipe].ingredients){
+            if (!userPantry.includes(recipes[recipe].ingredients[ingredient].replace("\r",""))){
+                includes = false
+            }
+        }
+        if (includes == true){
+            userRecipes.push(recipes[recipe])
+        }
+    }
+    console.log(userRecipes)
+    res.redirect("/")
+})
+
 module.exports = router
