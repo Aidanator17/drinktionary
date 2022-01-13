@@ -1,13 +1,13 @@
-<% if (currentUser.role == "admin") {%>
-    <div class="mb-2">
-    <h2 style="display: inline;">Recipes</h2>
-    <p style="display: inline;">(<%= recipes_diff.length %>)</p></div> <% }else{ %>
-        <h2>Recipes</h2> <% } %>  
+<h2>Your Recipes</h2>
+<% if (recipes_name.length == 0){ %>
+    <p>There are not enough items in your pantry to make any drink recipes! Add some more <a href="/pantry/add">here</a></p>
+    <%}else{ %> 
+<p>These are the recipes you can make based off the items in <a href="/pantry/view">your pantry</a>!</p>
 <span class="custom-control custom-switch">
     <input type="checkbox" class="custom-control-input" id="customSwitch1" oninput="swap_sort()">
     <label class="custom-control-label" for="customSwitch1">Sort by difficulty</label>
 </span>
-<div id="recipes_name" style="height: 80vh; overflow-y: auto;">
+<div id="recipes_name">
     <% for (drink in recipes_name){ %>
         <div class="recipelist">
             <img width="64px" height="64px" src="<%= recipes_name[drink].imageURL %>">
@@ -23,7 +23,7 @@
         </div>
         <% } %>
 </div>
-<div id="recipes_diff" style="display: none; height: 80vh; overflow-y: auto;">
+<div id="recipes_diff" style="display: none;">
     <% for (drink in recipes_diff){ %>
         <div class="recipelist">
             <img width="64px" height="64px" src="<%= recipes_diff[drink].imageURL %>">
@@ -38,7 +38,7 @@
             </div>
         </div>
         <% } %>
-</div>
+</div> <% } %> 
 <script>
     const swap_sort = () => {
         let recipes_diff = document.getElementById("recipes_diff")

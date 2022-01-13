@@ -75,8 +75,42 @@ router.get("/personal", ensureAuthenticated, async (req,res) => {
             userRecipes.push(recipes[recipe])
         }
     }
-    console.log(userRecipes)
-    res.redirect("/")
+    const pRecipes_name = userRecipes.sort(function(a, b) {
+      var nameA = a.name.toUpperCase(); // ignore upper and lowercase
+      var nameB = b.name.toUpperCase(); // ignore upper and lowercase
+      if (nameA < nameB) {
+        return -1;
+      }
+      if (nameA > nameB) {
+        return 1;
+      }
+    
+      // names must be equal
+      return 0;
+    });
+    let easy = []
+    let medium = []
+    let hard = []
+    let veryhard = []
+    for (drink in pRecipes_name){
+        if (pRecipes_name[drink].difficulty == "easy"){
+            easy.push(pRecipes_name[drink])
+        }
+        else if (pRecipes_name[drink].difficulty == "medium"){
+            medium.push(pRecipes_name[drink])
+        }
+        else if (pRecipes_name[drink].difficulty == "hard"){
+            hard.push(pRecipes_name[drink])
+        }
+        else if (pRecipes_name[drink].difficulty == "veryhard"){
+            veryhard.push(pRecipes_name[drink])
+        }
+        else{
+            console.log("??????????????????????????????????????????")
+        }
+    }
+    const pRecipes_diff = easy.concat(medium.concat(hard.concat(veryhard)))
+    res.render("recipe/recipePersonal", {recipes_diff:pRecipes_diff,recipes_name:pRecipes_name,currentUser:req.user})
 })
 
 module.exports = router

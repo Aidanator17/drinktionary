@@ -20,3 +20,6 @@
     display: grid;
     grid-template-columns: 70px 200px;
 }
+div.navbar-text.navbar-right.d-inline > div > div > a:hover {
+    color: #343a40;
+}

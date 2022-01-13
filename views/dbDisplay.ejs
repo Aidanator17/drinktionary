@@ -4,7 +4,7 @@
 <div id="users" class="vaultgrid">
     <% for (user in database){ %>
         <div><img width="64px" src="<%= database[user].imageURL %>"></div>
-        <div>
+        <div style="width: 30vw;">
             <h4>
                 <%= database[user].firstName %>
                     <%= database[user].lastName %>
@@ -27,7 +27,7 @@
 </div>
 <div id="food" style="display: none;">
     <p>
-        <%= items.length %> total ingredients
+        <%= items.length %> total ingredients (<%= ((recipeItems_unique.length/items.length)*100).toFixed(2) %>% used in recipes)
     </p>
     <div id="foodgridcontainer" style="height: 500px;">
         <div id="foodgridcontainer2">

@@ -2,8 +2,9 @@
     <%= currentUser.firstName %>
         <%= currentUser.lastName %>
 </h1>
-<p>ID: <%= currentUser.id %>
-</p>
+<% if (currentUser.role == "admin"){ %> 
+<p>ID: <%= currentUser.id %> 
+</p><% } %> 
 <p>Email: <%= currentUser.email %>
 </p>
 
