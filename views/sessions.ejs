@@ -1,0 +1,27 @@
+<h1>Sessions</h1>
+<ul class="list-group list-group-flush">
+    <% for (session in sessions){ for (user in users){ if
+        (String(users[user].id)==String(sessions[session].passport.user)){ %>
+        <li class="list-group-item">
+            <h4>Session ID: <%= session %>
+            </h4>
+            <h4>
+                Name: <%= users[user].firstName %>
+                    <%=users[user].lastName%>
+            </h4>
+            <h5>
+                User ID: <%= users[user].id %>
+            </h5>
+            <h5>
+                Email: <%= users[user].email %>
+            </h5>
+            <h5>
+                Role: <%= users[user].role %>
+            </h5>
+            <h5>
+                Login Method: <%= users[user].method %>
+            </h5>
+            <a href="sessions/revoke/<%= session %>">Revoke</a>
+        </li>
+        <% }}} %>
+</ul>

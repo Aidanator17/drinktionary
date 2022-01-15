@@ -113,4 +113,60 @@ router.get("/personal", ensureAuthenticated, async (req,res) => {
     res.render("recipe/recipePersonal", {recipes_diff:pRecipes_diff,recipes_name:pRecipes_name,currentUser:req.user})
 })
 
+router.get("/view/:id", ensureAuthenticated, async (req,res) => {
+    const findAmount = (text,drink) =>{
+        let startIndex = text.indexOf(drink)-2
+        let index = startIndex - 1
+        let endIndex
+        let amount = ""
+        let failsafe1 = 0
+        let failsafe2 = 0
+        while (true){
+            if (failsafe1>500){
+                break
+            }
+          if (text[index] === "("){
+            endIndex = index
+            break
+          }
+          index = index - 1
+          failsafe1++
+        }
+        let i = endIndex+1
+        while (i<startIndex){
+            if (failsafe2>500){
+                amount = "FALSE"
+                break
+            }
+          amount = amount+text[i]
+          i++
+        }
+        return amount
+      }
+    const recipes = JSON.parse(await foodFunctions.returnRecipes())
+    let targetRecipe
+    for (recipe in recipes){
+        if (recipes[recipe].id == req.params.id){
+            targetRecipe = recipes[recipe]
+            break
+        }
+    }
+    for (item in targetRecipe.ingredients){
+        targetRecipe.ingredients[item] = targetRecipe.ingredients[item].replace("\r","")
+    }
+    let itemsAmount = []
+    let text = ""
+    for (direction in targetRecipe.directions){
+        text = text + " " + targetRecipe.directions[direction]
+    }
+    for (item in targetRecipe.ingredients){
+        itemsAmount.push({
+            name:targetRecipe.ingredients[item],
+            amount:findAmount(text.toUpperCase(),targetRecipe.ingredients[item].toUpperCase())
+        })
+    }
+    // console.log(itemsAmount)
+    res.render("recipe/recipeView",{recipe:targetRecipe,currentUser:req.user,itemsAmount})
+})
+
 module.exports = router

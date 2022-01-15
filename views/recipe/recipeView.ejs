@@ -1,0 +1,30 @@
+<% if (currentUser.role=="admin" ) {%>
+    <div class="mb-2">
+        <h2 style="display: inline;">
+            <%= recipe.name %>
+        </h2>
+        <p style="display: inline;">(<%= recipe.id %>)</p>
+    </div>
+    <% }else{ %>
+        <h2>
+            <%= recipe.name %>
+        </h2>
+        <% } %>
+        <h6><%= recipe.difficulty.toUpperCase() %></h6>
+            <h4>Ingredients:</h4>
+            <ul class="list-group mb-3" style="width: 20vw;">
+                <% for (item in itemsAmount){ %>
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        <%= itemsAmount[item].name %>
+                        <span class="badge badge-primary badge-pill"><%= itemsAmount[item].amount.toLowerCase() %></span>
+                    </li>
+                    <% } %>
+            </ul>
+            <h4>Steps:</h4>
+            <ul class="list-group list-group-flush">
+                <% for (step in recipe.directions){ %>
+                    <li class="list-group-item">
+                        <%= recipe.directions[step] %>
+                    </li>
+                    <% } %>
+            </ul>

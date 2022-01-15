@@ -12,7 +12,7 @@
         <div class="recipelist">
             <img width="64px" height="64px" src="<%= recipes_name[drink].imageURL %>">
             <div>
-                <a href="#">
+                <a href="/recipe/view/<%= recipes_name[drink].id %>">
                     <h5>
                         <%= recipes_name[drink].name %>
                     </h5>
@@ -28,7 +28,7 @@
         <div class="recipelist">
             <img width="64px" height="64px" src="<%= recipes_diff[drink].imageURL %>">
             <div>
-                <a href="#">
+                <a href="/recipe/view/<%= recipes_diff[drink].id %>">
                     <h5>
                         <%= recipes_diff[drink].name %>
                     </h5>
